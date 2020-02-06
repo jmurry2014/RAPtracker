@@ -1,4 +1,4 @@
-// calling the farmers market api
+
 
 
 $("#artistButton").on('click', function () {
@@ -18,18 +18,33 @@ $("#artistButton").on('click', function () {
 
 
 
-        for (var i = 0; i < 5; i++) {
 
-            console.log(response[i])
+
+
+        $("#artistName").html(artistName)
+        image.attr('src', imageURL)
+        $("#artistImage").html(image)
+        $("#venue").html(response[125].venue.name)
+
+        console.log(time)
+        for (var i = 120; i < response.length; i++) {
+            var time = moment(response[i].datetime).format("MMM Do, hh:mm")
+            $("#tableData").after($("<tr><td>" + response[i].venue.name + "</td>" + "<td>" + response[i].venue.city + ', ' + response[i].venue.region + "</td>" + "<td>" + time + "</td>"))
+
+
+
+
+
+
+
+
 
 
 
         }
 
 
-        $("#artistName").html(artistName)
-        image.attr('src', imageURL)
-        $("#artistDiv").append(image)
+
 
     });
 })
@@ -39,7 +54,5 @@ $("#artistButton").on('click', function () {
 
 
 
-$("#close").on('click', function () {
-    $("#artistDiv").empty()
-})
+
 
