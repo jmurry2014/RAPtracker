@@ -1,11 +1,9 @@
-
-
-
 $("#artistButton").on('click', function () {
     var artist = $("#artistSearch").val().trim()
+    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=test&date=upcoming" + artist + "?app_id=test";
     console.log(artist)
 
-    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=test&date=upcoming" + artist + "?app_id=test";
+
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -17,19 +15,23 @@ $("#artistButton").on('click', function () {
         console.log(response)
 
 
-
-
-
-
         $("#artistName").html(artistName)
         image.attr('src', imageURL)
         $("#artistImage").html(image)
         $("#venue").html(response[125].venue.name)
 
-        console.log(time)
-        for (var i = 120; i < response.length; i++) {
-            var time = moment(response[i].datetime).format("MMM Do, hh:mm")
-            $("#tableData").after($("<tr><td>" + response[i].venue.name + "</td>" + "<td>" + response[i].venue.city + ', ' + response[i].venue.region + "</td>" + "<td>" + time + "</td>"))
+        var concertDate = response[0].datetime
+        console.log(concertDate)
+
+        for (var i = 0; i < response.length || 5; i++) {
+            var time = moment(response[i].datetime).format("MMM Do, YYYY hh:mm");
+            var venueName = response[i].venue.name
+            var city = response[i].venue.city;
+            var region = response[i].venue.region
+
+            if (i == 5) {
+                break;
+            }
 
 
 
@@ -39,14 +41,15 @@ $("#artistButton").on('click', function () {
 
 
 
-
+            $(".tableData").before($("<tr><td>" + venueName + "</td>" + "<td>" + city + ', ' + region + "</td>" + "<td>" + time + "</td></tr>"))
 
         }
-
-
-
-
     });
+
+    $("#concertInfo").find("td").remove();
+
+
+
 })
 
 
@@ -55,4 +58,9 @@ $("#artistButton").on('click', function () {
 
 
 
+
+
+
+var today = new Date();
+console.log(today)
 
