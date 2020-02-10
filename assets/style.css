@@ -121,3 +121,23 @@ html { overflow-y: scroll; }
     width:50%;
     margin-top:60px;
 }
+
+
+@media only screen and (max-width: 980px) {
+#concertInfo{
+margin-left:20px;
+
+}
+
+#map{
+    height:750px;
+    margin-left:25px;
+    border-radius: 10%;
+    margin-bottom:75px;
+    width:95%
+}
+
+
+
+
+}

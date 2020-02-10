@@ -2,9 +2,7 @@
 
 
 $("#artistButton").on('click', function () {
-
     $("#sentence").html("Click on the venue below to show on google maps!")
-
 
 
     function getData() {
@@ -23,13 +21,10 @@ $("#artistButton").on('click', function () {
             $("#map").attr('data-vision', 'hide')
         }
     }
-
     getData()
 
 
-
     function showData() {
-
         $.ajax({
             url: queryURL,
             method: "GET",
