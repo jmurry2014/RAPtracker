@@ -8,9 +8,9 @@ $("#artistButton").on('click', function () {
     function getData() {
         var artist = $("#artistSearch").val().trim()
         queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=test&date=upcoming" + artist + "?app_id=test";
-        var test = $("#map").attr('data-vision')
-        console.log(test)
-        if (test === 'hide') {
+        var map = $("#map").attr('data-vision')
+
+        if (map === 'hide') {
             console.log('this is hidden')
             $('#map').hide()
             $("#map").attr('data-vision', 'show')
@@ -29,7 +29,6 @@ $("#artistButton").on('click', function () {
             url: queryURL,
             method: "GET",
         }).then(function (response) {
-            console.log(response)
             var imageURL = response[0].artist.image_url;
             var image = $("<img id='pictureSize'>")
             var artistName = response[0].artist.name
@@ -63,8 +62,7 @@ $("#artistButton").on('click', function () {
                 $(".location").on('click', function () {
                     longitude = parseFloat($(this).attr('data-longitude'))
                     latitude = parseFloat($(this).attr('data-latitude'))
-                    console.log(longitude)
-                    console.log(latitude)
+
 
                     function initMap() {
                         var map = new google.maps.Map(

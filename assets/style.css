@@ -52,12 +52,7 @@ float:right;
 
 }
 
-#modalHR{
-  background-color: red;
-    margin-top:30px;
-    margin-left:210px;
-    width:250px
-}
+
 
 
 #bio{
@@ -108,7 +103,7 @@ td, th {
 tr:nth-child(even) {
   background-color: black;
 }
-html { overflow-y: scroll; }
+html { overflow-y: scroll; width:100% }
 
 #concertInfo{
     margin-left:900px;
