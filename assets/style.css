@@ -90,20 +90,23 @@ float:right;
 }
 
 table {
-    background-color:white;
+    background-color:grey;
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  color:white;
+  border:solid;
+  
 }
 
 td, th {
-  border: 1px solid white;
+  border: 1px solid grey;
   text-align: left;
   padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: lightcoral;
+  background-color: black;
 }
 html { overflow-y: scroll; }
 
