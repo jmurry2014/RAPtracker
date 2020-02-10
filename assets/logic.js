@@ -3,7 +3,7 @@
 
 $("#artistButton").on('click', function () {
 
-
+    $("#sentence").html("Click on the venue below to show on google maps!")
 
 
 
@@ -48,16 +48,6 @@ $("#artistButton").on('click', function () {
             $("#venue").html(response[125].venue.name)
 
 
-
-
-
-
-
-
-
-
-
-
             for (var i = 0; i < response.length; i++) {
                 var time = moment(response[i].datetime).format("MMM Do, YYYY hh:mm");
                 var concertDate = new Date(response[i].datetime)
@@ -67,23 +57,30 @@ $("#artistButton").on('click', function () {
                 lati = parseFloat(response[i].venue.latitude)
                 longi = parseFloat(response[i].venue.longitude)
                 if (today.getTime() < concertDate.getTime()) {
-                    $(".tableData").before($("<tr><td data-location='" + lati + "'>" + venueName + "</td>" + "<td>" + city + ', ' + region + "</td>" + "<td>" + time + "</td></tr>"))
+                    $(".tableData").before($("<tr><td class='location' data-latitude='" + lati + "'data-longitude='" + longi + "'>" + venueName + "</td>" + "<td>" + city + ', ' + region + "</td>" + "<td>" + time + "</td></tr>"))
                 } else {
                     continue;
                 }
 
             }
-            function initMap() {
 
-                var map = new google.maps.Map(
-                    document.getElementById('map'), { zoom: 15, center: { lat: lati, lng: longi } });
-                var marker = new google.maps.Marker({ position: { lat: lati, lng: longi }, map: map });
+            function mapVenue() {
+                $(".location").on('click', function () {
+                    longitude = parseFloat($(this).attr('data-longitude'))
+                    latitude = parseFloat($(this).attr('data-latitude'))
+                    console.log(longitude)
+                    console.log(latitude)
 
+                    function initMap() {
+                        var map = new google.maps.Map(
+                            document.getElementById('map'), { zoom: 15, center: { lat: latitude, lng: longitude } });
+                        var marker = new google.maps.Marker({ position: { lat: latitude, lng: longitude }, map: map });
+                    }
+                    $("#map").show()
+                    initMap()
+                })
             }
-            $("#map").show()
-            console.log('latitude ' + lati)
-            console.log('longitude ' + longi)
-            initMap()
+            mapVenue()
         });
 
     }
